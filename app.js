@@ -1,3 +1,4 @@
+require('dotenv').config()
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -11,6 +12,13 @@ const Cache = require('./util/cache');
 const config = require('./bin/config');
 
 const app = express();
+
+const port = process.env.PORT;
+global.QQ = process.env.QQ;
+global.PORT = port;
+global.useDataStatistics = process.env.USE_DATA_STATISTICS || config.useDataStatistics;
+app.set('port', port);
+
 const dataHandle = new DataStatistics();
 global.dataStatistics = dataHandle;
 global.feedback = new Feedback();
@@ -107,5 +115,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.listen(port, () => {
+  console.log(`配置QQ号/wxuin 为：${global.QQ}\nApp listening at http://localhost:${port}`)
+})
 
 module.exports = app;
