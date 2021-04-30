@@ -16,7 +16,7 @@ const app = express();
 const port = process.env.PORT;
 global.QQ = process.env.QQ;
 global.PORT = port;
-global.useDataStatistics = process.env.USE_DATA_STATISTICS || config.useDataStatistics;
+global.useDataStatistics = process.env.USE_DATA_STATISTICS;
 app.set('port', port);
 
 const dataHandle = new DataStatistics();
