@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-
+require('dotenv').config()
 var app = require('../app');
 var debug = require('debug')('qqmusicapi:server');
 var http = require('http');
@@ -16,7 +16,7 @@ var config = require('./config');
 var port = normalizePort(process.env.PORT || config.port);
 global.QQ = process.env.QQ || config.qq;
 global.PORT = port;
-global.useDataStatistics = config.useDataStatistics;
+global.useDataStatistics = process.env.USE_DATA_STATISTICS || config.useDataStatistics;
 app.set('port', port);
 
 /**
