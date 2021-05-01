@@ -116,8 +116,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(port, () => {
-  console.log(`配置QQ号/wxuin 为：${global.QQ}\nApp listening at http://localhost:${port}`)
-})
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`配置QQ号/wxuin 为：${global.QQ}\nApp listening at http://localhost:${port}`)
+  })
+}
 
 module.exports = app;
